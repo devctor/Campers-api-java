@@ -1,5 +1,4 @@
 package com.backend.springproject.Camper;
-import com.backend.springproject.Camper.DTO.CamperDTO;
 import com.backend.springproject.Camper.DTO.CamperRegisterDTO;
 import com.backend.springproject.Camper.DTO.CamperResponseDTO;
 import jakarta.validation.Valid;
@@ -12,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Collections;
 import java.util.List;
 
 @RestController
@@ -28,9 +28,9 @@ public class CamperController {
     public  String index() { return "camper /GET";}
 
     @GetMapping("/campers")
-    public List<Camper> getAllCampers() {
-        return camperService.getAllCampers();
-//        return "ghgh";
+    public ResponseEntity<List<CamperResponseDTO>> getAllCampers() {
+        List<CamperResponseDTO> allCampers = camperService.getAllCampers();
+        return  ResponseEntity.ok().body(allCampers);
     }
 
     @PostMapping("/camper")

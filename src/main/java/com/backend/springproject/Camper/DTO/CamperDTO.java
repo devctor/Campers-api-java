@@ -3,6 +3,8 @@ package com.backend.springproject.Camper.DTO;
 import jakarta.validation.constraints.*;
 import lombok.Data;
 
+import java.util.List;
+
 @Data
 public class CamperDTO {
     private Long id;
@@ -20,6 +22,10 @@ public class CamperDTO {
     @NotNull(message = "Username is required")
     private String username;
     private String password;
+
+    public CamperDTO(List<CamperResponseDTO> camperResponseDTOList) {
+
+    }
 
 //    public CamperDTO(String name, Integer age, String username) {
 //        this.name = name;
