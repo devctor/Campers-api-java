@@ -1,5 +1,6 @@
 package com.backend.springproject.Camper.DTO;
 
+import jakarta.persistence.Entity;
 import jakarta.validation.constraints.*;
 import lombok.Data;
 

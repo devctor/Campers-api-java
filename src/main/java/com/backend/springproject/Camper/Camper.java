@@ -13,7 +13,7 @@ import java.util.Set;
 
 @Data
 @Entity
-@Table
+//@Table
 public class Camper {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
