@@ -17,7 +17,7 @@ public class CamperService {
     private CamperRepository camperRepository;
     @Autowired
     private ModelMapper modelMapper;
-    private Function<? super Camper,?> CamperDTOMapper;
+//    private Function<? super Camper,?> CamperDTOMapper;
 
     public List<CamperResponseDTO> getAllCampers(){
         return MapperUtil.mapList(camperRepository.findAll(), CamperResponseDTO.class);

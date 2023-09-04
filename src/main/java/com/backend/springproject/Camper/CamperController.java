@@ -1,6 +1,7 @@
 package com.backend.springproject.Camper;
 import com.backend.springproject.Camper.DTO.CamperRegisterDTO;
 import com.backend.springproject.Camper.DTO.CamperResponseDTO;
+import jakarta.persistence.EntityNotFoundException;
 import jakarta.validation.Valid;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +31,9 @@ public class CamperController {
     @GetMapping("/campers")
     public ResponseEntity<List<CamperResponseDTO>> getAllCampers() {
         List<CamperResponseDTO> allCampers = camperService.getAllCampers();
+        if (allCampers.isEmpty()) {
+            throw new EntityNotFoundException("No campers found.");
+        }
         return  ResponseEntity.ok().body(allCampers);
     }
 
