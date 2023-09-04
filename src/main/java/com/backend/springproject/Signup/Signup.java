@@ -10,10 +10,10 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
+//@AllArgsConstructor
+//@NoArgsConstructor
 @Entity
-@Table
+//@Table
 public class Signup {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -34,4 +34,18 @@ public class Signup {
     @NotNull(message = "Activity ID is required")
     @Column(name = "activity_id", insertable = false, updatable = false)
     private Long activityId;
+
+    private Integer time;
+
+
+
+    public Signup() {
+    }
+    public Signup(Long id, Camper camper, Activity activity, Integer time) {
+        this.id = id;
+        this.camper = camper;
+        this.activity = activity;
+        this.time = time;
+
+    }
 }

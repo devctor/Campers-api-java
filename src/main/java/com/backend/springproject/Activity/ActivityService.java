@@ -1,13 +1,9 @@
 package com.backend.springproject.Activity;
-
+import com.backend.springproject.Signup.Signup;
+import com.backend.springproject.Signup.SignupRepository;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,6 +12,9 @@ import java.util.List;
 public class ActivityService {
     @Autowired
     private  ActivityRepository activityRepository;
+
+    @Autowired
+    private SignupRepository signupRepository;
 
     public List<Activity> getAllActivities() {
         Iterable<Activity> activitiesIterable = activityRepository.findAll();
@@ -34,6 +33,18 @@ public class ActivityService {
         return activityRepository.save(activityDTO);
     }
 
+    public void deleteActivity(Long activityId) {
+        // Find the Activity by ID
+        Activity activity = activityRepository.findById(activityId)
+                .orElseThrow(() -> new EntityNotFoundException("Activity not found"));
+
+        // Delete associated Signups
+        List<Signup> signups = activity.getSignups();
+        signupRepository.deleteAll(signups);
+
+        // Delete the Activity itself
+        activityRepository.delete(activity);
+    }
 
 
 }
