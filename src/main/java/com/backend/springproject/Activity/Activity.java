@@ -23,4 +23,6 @@ public class Activity {
     @Column(name = "activity_name", nullable = false, length = 100)
     private String name;
 
+    private  Number difficulty;
+
 }
