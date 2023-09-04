@@ -1,4 +1,4 @@
-package com.backend.springproject.Signup;
+package com.backend.springproject.Signup.DTO;
 
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
