@@ -1,16 +1,14 @@
 package com.backend.springproject.Camper;
 import com.backend.springproject.Camper.DTO.CamperRegisterDTO;
 import com.backend.springproject.Camper.DTO.CamperResponseDTO;
+import com.backend.springproject.Camper.DTO.CamperWithActivitiesResponse;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.validation.Valid;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Collections;
 import java.util.List;
@@ -50,5 +48,15 @@ public class CamperController {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
 
+    }
+
+    @GetMapping("/camper/{id}")
+    public ResponseEntity<CamperWithActivitiesResponse> getCamperWithActivities(@PathVariable Long id) {
+        CamperWithActivitiesResponse camperWithActivities = camperService.getCamperWithActivities(id);
+        if (camperWithActivities != null) {
+            return ResponseEntity.ok(camperWithActivities);
+        } else {
+            return ResponseEntity.notFound().build(); // Return 404 if camper is not found
+        }
     }
 }

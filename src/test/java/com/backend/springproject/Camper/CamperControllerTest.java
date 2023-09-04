@@ -97,23 +97,4 @@ public class CamperControllerTest {
         // Add assertions for specific error messages and fields as needed
     }
 
-//    @Test
-//    public void testGetCamperByIdWithValidId() throws Exception {
-//        // Mock the behavior of the CamperService to return a CamperDTO
-//        CamperDTO mockCamperDTO = new CamperDTO();
-//        mockCamperDTO.setId(1L);
-//        mockCamperDTO.setName("Test Camper");
-//
-//        // Specify the ID you want to test
-//        Long testCamperId = 1L;
-//
-//        // Mock the service behavior to return the CamperDTO when the specified ID is requested
-//        Mockito.when(camperService.getCamperById(testCamperId)).thenReturn(mockCamperDTO);
-//
-//        mockMvc.perform(MockMvcRequestBuilders.get("/campers/{id}", testCamperId))
-//                .andExpect(MockMvcResultMatchers.status().isOk())
-//                .andExpect(MockMvcResultMatchers.jsonPath("$.id").value(1))
-//                .andExpect(MockMvcResultMatchers.jsonPath("$.name").value("Test Camper"));
-//        // Add more assertions as needed for other fields
-//    }
 }

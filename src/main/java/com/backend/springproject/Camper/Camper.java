@@ -8,7 +8,8 @@ import jakarta.validation.constraints.Size;
 import lombok.*;
 //import org.springframework.data.annotation.Id;
 
-import java.lang.annotation.Documented;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.Set;
 
 @Data
@@ -56,4 +57,11 @@ public class Camper {
 
     public Camper(){}
 
+    public Collection<Object> getActivities() {
+        return Collections.singleton(signups);
+    }
+
+    public void setActivities(Set<Signup> activities) {
+        this.signups = activities;
+    }
 }
