@@ -23,9 +23,9 @@ public class CamperDTO {
     private String username;
     private String password;
 
-    public CamperDTO(List<CamperResponseDTO> camperResponseDTOList) {
-
-    }
+//    public CamperDTO(List<CamperResponseDTO> camperResponseDTOList) {
+//
+//    }
 
 //    public CamperDTO(String name, Integer age, String username) {
 //        this.name = name;

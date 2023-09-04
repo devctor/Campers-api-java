@@ -30,12 +30,12 @@ public class ActivityController {
     }
 
     @PostMapping("/activity")
-    public ResponseEntity<ActivityDTO> createActivity(@Valid @RequestBody ActivityDTO activityDTO) {
+    public ResponseEntity<Activity> createActivity(@Valid @RequestBody ActivityDTO activityDTO) {
         Activity activityRequest = modelMapper.map(activityDTO, Activity.class);
         Activity _activity = activityService.createActivity(activityRequest);
-        ActivityDTO activityResponse = modelMapper.map(_activity, ActivityDTO.class);
+//        ActivityDTO activityResponse = modelMapper.map(_activity, ActivityDTO.class);
 
-        return ResponseEntity.ok().body(activityResponse);
+        return ResponseEntity.ok().body(_activity);
 
     }
 }
