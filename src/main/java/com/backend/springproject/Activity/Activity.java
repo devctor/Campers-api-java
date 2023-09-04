@@ -9,8 +9,8 @@ import lombok.NoArgsConstructor;
 //import org.springframework.data.annotation.Id;
 
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
+//@AllArgsConstructor
+//@NoArgsConstructor
 @Entity
 @Table
 public class Activity {
@@ -25,4 +25,15 @@ public class Activity {
 
     private  Number difficulty;
 
+    public Activity(Long id, String name, Number difficulty) {
+        this.id = id;
+        this.name = name;
+        this.difficulty = difficulty;
+    }
+    public Activity(String name, Number difficulty) {
+        this.name = name;
+        this.difficulty = difficulty;
+    }
+
+    public Activity() {}
 }

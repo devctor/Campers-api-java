@@ -30,11 +30,8 @@ public class ActivityService {
         return activities;
     }
 
-    public Activity createActivity(ActivityDTO activityDTO) {
-        Activity newActivity = new Activity();
-        newActivity.setName(activityDTO.getName());
-        newActivity.setDifficulty(activityDTO.getDifficulty());
-        return activityRepository.save(newActivity);
+    public Activity createActivity(Activity activityDTO) {
+        return activityRepository.save(activityDTO);
     }
 
 
