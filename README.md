@@ -1,6 +1,6 @@
 # Spring Boot Access Camp API
 
-Hey there! 👋 Welcome to my Spring Boot Campers API project. As part of my bootcamp at factoriaF5, I had the fantastic opportunity to work on this assignment. This README will give you an overview of what I've accomplished and the technologies I've used.
+Hey there! 👋 Welcome to my Spring Boot Campers API project. As part of my bootcamp at FactoriaF5, I had the fantastic opportunity to work on this assignment. This README will give you an overview of what I've accomplished and the technologies I've used.
 
 ## Table of Contents
 
@@ -16,7 +16,7 @@ Hey there! 👋 Welcome to my Spring Boot Campers API project. As part of my boo
 
 ## Overview
 
-I'm thrilled to share my progress on this project! Access Camp, my imaginary client, wanted a website to manage campers and their activities. While working on this assignment, I delved into Java Spring Boot, a technology I'm relatively new to. I also explored Model Mapper and learned to debug my Java code effectively.
+I'm thrilled to share my progress on this project! Campers Api, my imaginary client, wanted a website to manage campers and their activities. While working on this assignment, I delved into Java Spring Boot, a technology I'm relatively new to. I also explored Model Mapper and learned to debug my Java code effectively.
 
 ## Learning Goals
 
@@ -65,7 +65,7 @@ Unit testing played a significant role in ensuring the reliability of my code. I
 
 ## Acknowledgments
 
-I'd like to express my gratitude to factoriaF5 for providing me with this fantastic learning opportunity. If you have any questions or need further assistance, feel free to reach out to me at [your email address].
+I'd like to express my gratitude to FactoriaF5 for providing me with this fantastic learning opportunity. If you have any questions or need further assistance, feel free to reach out to me at [your email address].
 
 Happy coding! 🚀
 
