@@ -5,6 +5,7 @@ import com.backend.springproject.Camper.CamperRepository;
 import com.backend.springproject.Signup.DTO.SignupRequestDTO;
 import com.backend.springproject.Signup.DTO.SignupResponseDTO;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import jakarta.persistence.EntityNotFoundException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -30,41 +31,23 @@ public class SignupControllerTest {
     @MockBean
     private SignupService signupService;
 
-    @MockBean
-    private CamperRepository camperRepository;
+    @Test
+    public void testCreateSignup() throws Exception {
+        // Mock data for request DTO
+        SignupRequestDTO requestDTO = new SignupRequestDTO();
+        requestDTO.setCamperId(1L);
+        requestDTO.setActivityId(2L);
+        requestDTO.setTime(9);
 
-    @MockBean
-    private ActivityRepository activityRepository;
-
-    @BeforeEach
-    public void setUp() {
-        // Mock Camper and Activity entities
+        // Mock data for entities
         Camper camper = new Camper();
         camper.setId(1L);
 
         Activity activity = new Activity();
         activity.setId(2L);
 
-        Mockito.when(camperRepository.findById(1L)).thenReturn(java.util.Optional.of(camper));
-        Mockito.when(activityRepository.findById(2L)).thenReturn(java.util.Optional.of(activity));
-    }
-
-    @Test
-    public void testCreateSignup() throws Exception {
-        // Mock data
-        SignupRequestDTO requestDTO = new SignupRequestDTO();
-        requestDTO.setCamperId(1L);
-        requestDTO.setActivityId(2L);
-        requestDTO.setTime(9);
-
-        SignupResponseDTO signup = new SignupResponseDTO();
-        signup.setId(1L);
-        signup.setCamperId(1L);
-        signup.setActivityId(2L);
-        signup.setTime(9);
-
         // Mock the service
-        Mockito.when(signupService.addSignup(Mockito.any(SignupRequestDTO.class))).thenReturn(signup);
+        Mockito.when(signupService.addSignup(Mockito.any(SignupRequestDTO.class))).thenReturn(createMockSignup(camper, activity));
 
         // Perform POST request
         MvcResult result = mockMvc.perform(MockMvcRequestBuilders
@@ -80,5 +63,54 @@ public class SignupControllerTest {
 
         // Verify that the service method was called
         Mockito.verify(signupService, Mockito.times(1)).addSignup(Mockito.any(SignupRequestDTO.class));
+    }
+
+    @Test
+    public void testCreateSignupCamperNotFound() throws Exception {
+        // Mock data for request DTO
+        SignupRequestDTO requestDTO = new SignupRequestDTO();
+        requestDTO.setCamperId(1L);
+        requestDTO.setActivityId(2L);
+        requestDTO.setTime(9);
+
+        // Mock the service to throw EntityNotFoundException for Camper
+        Mockito.when(signupService.addSignup(Mockito.any(SignupRequestDTO.class)))
+                .thenThrow(new EntityNotFoundException("Camper not found with id: 1"));
+
+        // Perform POST request
+        mockMvc.perform(MockMvcRequestBuilders
+                        .post("/signups")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(requestDTO)))
+                .andExpect(status().isNotFound());
+    }
+
+    @Test
+    public void testCreateSignupActivityNotFound() throws Exception {
+        // Mock data for request DTO
+        SignupRequestDTO requestDTO = new SignupRequestDTO();
+        requestDTO.setCamperId(1L);
+        requestDTO.setActivityId(2L);
+        requestDTO.setTime(9);
+
+        // Mock the service to throw EntityNotFoundException for Activity
+        Mockito.when(signupService.addSignup(Mockito.any(SignupRequestDTO.class)))
+                .thenThrow(new EntityNotFoundException("Activity not found with id: 2"));
+
+        // Perform POST request
+        mockMvc.perform(MockMvcRequestBuilders
+                        .post("/signups")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(requestDTO)))
+                .andExpect(status().isNotFound());
+    }
+
+    private Signup createMockSignup(Camper camper, Activity activity) {
+        Signup signup = new Signup();
+        signup.setId(1L);
+        signup.setCamper(camper);
+        signup.setActivity(activity);
+        signup.setTime(9);
+        return signup;
     }
 }
