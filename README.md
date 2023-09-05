@@ -65,7 +65,7 @@ Unit testing played a significant role in ensuring the reliability of my code. I
 
 ## Acknowledgments
 
-I'd like to express my gratitude to FactoriaF5 for providing me with this fantastic learning opportunity. If you have any questions or need further assistance, feel free to reach out to me at [your email address].
+I'd like to express my gratitude to FactoriaF5 for providing me with this fantastic learning opportunity. If you have any questions or need further assistance, feel free to reach out to me at.
 
 Happy coding! 🚀
 
